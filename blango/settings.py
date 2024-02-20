@@ -19,6 +19,8 @@ class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
 
+    INTERNAL_IPS = ["192.168.11.179"]
+
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -86,12 +88,14 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        "debug_toolbar",
         "crispy_forms",
         "crispy_bootstrap5",
         "blog",
     ]
 
     MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
