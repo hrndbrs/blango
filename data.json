@@ -1,0 +1,153 @@
+[
+  {
+    "model": "blog.comment",
+    "pk": 1,
+    "fields": {
+      "creator": 1,
+      "content": "test comment 123",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-11T11:45:31.757Z",
+      "modified_at": "2024-02-11T11:45:31.757Z"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 2,
+    "fields": {
+      "creator": 1,
+      "content": "test comment 2 xixixi",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-11T12:34:53.869Z",
+      "modified_at": "2024-02-11T12:34:53.869Z"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 3,
+    "fields": {
+      "creator": 2,
+      "content": "test comment 123 lorem ipsum dolor sit amet",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-19T08:56:51.763Z",
+      "modified_at": "2024-02-19T08:56:51.763Z"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 4,
+    "fields": {
+      "creator": 2,
+      "content": "test lagi 1233 komen komen",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-19T15:18:44.514Z",
+      "modified_at": "2024-02-19T15:18:44.514Z"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 5,
+    "fields": {
+      "creator": 2,
+      "content": "lagi test lagi 1233 komen komen",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-19T15:19:11.979Z",
+      "modified_at": "2024-02-19T15:19:11.979Z"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 6,
+    "fields": {
+      "creator": 2,
+      "content": "tambah komen again",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-19T15:22:58.496Z",
+      "modified_at": "2024-02-19T15:22:58.496Z"
+    }
+  },
+  {
+    "model": "blog.comment",
+    "pk": 7,
+    "fields": {
+      "creator": 2,
+      "content": "coba lagi 1123",
+      "content_type": 8,
+      "object_id": 1,
+      "created_at": "2024-02-19T15:29:40.099Z",
+      "modified_at": "2024-02-19T15:29:40.099Z"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "pk": 1,
+    "fields": {
+      "value": "Tag1"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "pk": 2,
+    "fields": {
+      "value": "Tag2"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "created_at": "2024-02-06T18:37:47.678Z",
+      "modified_at": "2024-02-06T18:37:47.678Z",
+      "published_at": "2024-02-06T18:37:47.678Z",
+      "title": "post title",
+      "slug": "post-title",
+      "summary": "post summary",
+      "content": "<p>This is a content</p>",
+      "tags": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "blango_auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$Mmo2ZDFzVEVNVGpqZFFDWkV3TGU4bA$pbLhMMDz9Gp0TxpM5YmAb4zRfH6B9mmOOZ7hQWFsRHQ",
+      "last_login": "2024-02-19T19:13:29.849Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@mail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-02-05T17:42:17.756Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "blango_auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$kIonFYUGrzgmSnYres2Pc1$puqwZx3A/3XgzszAKvpEGeooFKNOeLvv3XbP7SC/27g=",
+      "last_login": "2024-02-19T08:56:21.417Z",
+      "is_superuser": false,
+      "username": "user",
+      "first_name": "blip",
+      "last_name": "blop",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-02-19T08:55:08Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

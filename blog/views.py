@@ -24,7 +24,7 @@ def index(req):
   posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
 
   logger.debug("Got %d posts", len(posts)) 
-
+  
   return render(req, "blog/index.html", { "posts" : posts })
 
 def post_detail(req, slug):
