@@ -23,7 +23,7 @@ from blog.api.serializers import PostSerializer
 #     }
 
 @csrf_exempt
-def post_list(req):
+def post_list(req, format=None):
   if req.method == "GET":
     # posts = [post_to_dict(post) for post in Post.objects.all()]
     posts = Post.objects.all()
@@ -45,7 +45,7 @@ def post_list(req):
   return HttpResponseNotAllowed(["GET", "POST"])
 
 @csrf_exempt
-def post_detail(req, pk):
+def post_detail(req, pk, format=None):
   post = get_object_or_404(Post, pk=pk)
 
   if req.method == "GET":
