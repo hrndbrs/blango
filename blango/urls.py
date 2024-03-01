@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import debug_toolbar
+
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django_registration.backends.activation.views import RegistrationView
+
+
 from blango_auth.forms import BlangoRegistrationForm
 from blog import views as blog
 from blango_auth import views as blango_auth
@@ -26,7 +30,7 @@ urlpatterns = [
   # path("ip/", blog.views.get_ip),
   path("", blog.index),
   path('admin/', admin.site.urls),
-  path("post/<slug>/", blog.post_detail, name="blog-post-detail"),
+  path("posts/<slug>/", blog.post_detail, name="blog-post-detail"),
   path("accounts/profile/", blango_auth.profile, name="profile"),
   path(
     "accounts/register/",
@@ -42,4 +46,4 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
-    ]
+    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

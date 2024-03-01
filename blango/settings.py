@@ -155,6 +155,7 @@ class Dev(Configuration):
         "rest_framework.authtoken",
         "drf_yasg",
         "django_filters",
+        "versatileimagefield"  # don't forget to set MEDIA_ROOT as well
     ]
 
     MIDDLEWARE = [
@@ -254,6 +255,9 @@ class Dev(Configuration):
     # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
     STATIC_URL = '/static/'
+    
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
 
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

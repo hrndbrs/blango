@@ -1,9 +1,14 @@
-from rest_framework import serializers
-from blog.models import Post, Tag
-from blango_auth.models import User
-import time
 from django.utils.text import slugify
+from rest_framework import serializers
+from versatileimagefield.serializers import VersatileImageFieldSerializer
+
 from blog.models import Post, Tag, Comment
+
+from blango_auth.models import User
+
+import time
+
+# ------------------------------------------------------------------
 
 class TagField(serializers.SlugRelatedField):
   def to_internal_value(self, data):
@@ -11,6 +16,8 @@ class TagField(serializers.SlugRelatedField):
       return self.get_queryset().get_or_create(value=data.lower())[0]
     except (TypeError, ValueError):
       self.fail(f"Tag balue {data} is invalid")
+
+# ------------------------------------------------------------------
 
 class PostSerializer(serializers.ModelSerializer):
   slug = serializers.SlugField(required=False)
@@ -20,9 +27,18 @@ class PostSerializer(serializers.ModelSerializer):
   author = serializers.HyperlinkedRelatedField(
     queryset=User.objects.all(), view_name="api_user_detail", lookup_field="email"
   )
+  hero_image = VersatileImageFieldSerializer(
+    sizes=[
+      ("full_size", "url"),
+      ("thumbnail", "thumbnail__100x100")
+    ],
+    read_only=True
+  )
+
   class Meta:
     model = Post
-    fields = "__all__"
+    # fields = "__all__"
+    exclude = ["ppoi"]
     readonly = ["modified_at", "created_at"]
 
   def validate(self, data):
@@ -30,10 +46,14 @@ class PostSerializer(serializers.ModelSerializer):
 
     return data
 
+# ------------------------------------------------------------------
+
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
     fields = ["first_name", "last_name", "email"]
+
+# ------------------------------------------------------------------
 
 class CommentSerializer(serializers.ModelSerializer):
   id = serializers.IntegerField(required=False)
@@ -44,8 +64,18 @@ class CommentSerializer(serializers.ModelSerializer):
     fields = ["id", "creator", "content", "modified_at", "created_at"]
     readonly = ["modified_at", "created_at"]
 
+# ------------------------------------------------------------------
+
 class PostDetailSerializer(PostSerializer):
   comments = CommentSerializer(many=True)
+  hero_image = VersatileImageFieldSerializer(
+    sizes=[
+      ("full_size", "url"),
+      ("thumbnail", "thumbnail__100x100"),
+      ("square_crop", "crop__200x200")
+    ],
+    read_only=True
+  )
 
   def update(self, instance, validated_data):
     comments = validated_data.pop("comments")
@@ -61,6 +91,8 @@ class PostDetailSerializer(PostSerializer):
       comment.save()
 
     return instance
+
+# ------------------------------------------------------------------
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
