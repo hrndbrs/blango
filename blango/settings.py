@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from configurations import Configuration, values
+from datetime import timedelta
 import dj_database_url
 
 class Dev(Configuration):
@@ -32,11 +33,17 @@ class Dev(Configuration):
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_AUTHENTICATION_METHOD = "email"
 
+    SIMPLE_JWT = {
+        "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+        "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    }
+
     REST_FRAMEWORK = {
         "DEFAULT_AUTHENTICATION_CLASSES": [
             "rest_framework.authentication.BasicAuthentication",
             "rest_framework.authentication.SessionAuthentication",
             "rest_framework.authentication.TokenAuthentication",
+            "rest_framework_simplejwt.authentication.JWTAuthentication"
         ],
         "DEFAULT_PERMISSION_CLASSES": [
             "rest_framework.permissions.IsAuthenticatedOrReadOnly",
@@ -147,7 +154,7 @@ class Dev(Configuration):
         "rest_framework",
         "rest_framework.authtoken",
         "drf_yasg",
-        "django_filters"
+        "django_filters",
     ]
 
     MIDDLEWARE = [

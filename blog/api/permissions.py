@@ -5,7 +5,7 @@ class AuthorModifyOrReadOnly(permissions.IsAuthenticatedOrReadOnly):
     if req.method in permissions.SAFE_METHODS:
       return True
     
-    return request.user == obj.author
+    return req.user == obj.author
 
 class IsAdminUserForObject(permissions.IsAdminUser):
   def has_object_permission(self, req, view, obj):
